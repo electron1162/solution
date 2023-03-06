@@ -1,0 +1,13 @@
+Metadata query an instance and out as json:
+
+*if the vm uses proxy use the --noproxy flag
+
+Windows:
+Invoke-RestMethod -Headers @{"Metadata"="true"} -Method GET -NoProxy -Uri "http://169.254.169.254/metadata/instance?api-version=2021-02-01" | ConvertTo-Json -Depth 64
+
+Invoke-RestMethod -Headers @{"Metadata"="true"} -Method GET -Uri "http://169.24.169.254/metadata/instance?api-version=2021-02-01" | ConvertTo-Json -Depth 64
+
+Linux:
+curl -s -H Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance?api-version=2021-02-01" | jq
+
+curl -s -H Metadata:true "*" "http://169.254.169.254/metadata/instance?api-version=2021-02-01" | jq
